@@ -1,0 +1,17 @@
+services:
+  postgres:
+    restart: always
+    ports: [] # Não expõe a porta do banco para a máquina host em produção
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+
+  api:
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: "1.5"
+          memory: 1024M

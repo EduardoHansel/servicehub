@@ -1,0 +1,51 @@
+type Query {
+    users(page: Int = 0, size: Int = 10): [UserResponse!]!
+    userById(id: ID!): UserResponse
+    services(page: Int = 0, size: Int = 10): [ServiceResponse!]!
+    serviceById(id: ID!): ServiceResponse
+}
+
+type Mutation {
+    createUser(input: CreateUserInput!): UserResponse!
+    createService(input: CreateServiceInput!): ServiceResponse!
+}
+
+type UserResponse {
+    id: ID!
+    fullName: String!
+    email: String!
+    phone: String
+    bio: String
+    avatarUrl: String
+    active: Boolean
+    role: String
+}
+
+type ServiceResponse {
+    id: ID!
+    title: String!
+    description: String!
+    price: Float!
+    category: String!
+    provider: UserResponse!
+    active: Boolean
+    createdAt: String
+}
+
+input CreateUserInput {
+    fullName: String!
+    email: String!
+    password: String!
+    phone: String
+    bio: String
+    avatarUrl: String
+    role: String
+}
+
+input CreateServiceInput {
+    title: String!
+    description: String!
+    price: Float!
+    category: String!
+    provider: ID
+}
